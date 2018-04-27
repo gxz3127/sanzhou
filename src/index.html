@@ -32,14 +32,14 @@
                             <div class="swiper-slide"><img src="./img/lunbo.png" alt=""></div> 
                         </div> 
                     </div>
-                    <script id="entry-template" type="text/x-hardlebars-template">
+                    <!-- <script id="entry-template" type="text/x-hardlebars-template">
                         <div class="entry">
                             <h1>{{title}}</h1>
                             <div class="body">
                                 {{body}}
                             </div>
                         </div>
-                    </script> 
+                    </script>  -->
                     <div class="biao">
                         <u>
                             <b class="iconfont">&#xe68a;</b>
@@ -137,11 +137,11 @@
                     dataType:"json",
                     success:function(res){
                         console.log(res);
-                        var source=$("#entry-template").html();
-                        var template=Handlebars.compile(source);
-                        var context= res; 
-                        var html=template(context);
-                        $(".wrap").html(html); 
+                        // var source=$("#entry-template").html();
+                        // var template=Handlebars.compile(source);
+                        // var context= res; 
+                        // var html=template(context);
+                        // $(".wrap").html(html); 
                     },
                     error:function(erroe){
                         console.warn(error);
