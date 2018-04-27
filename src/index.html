@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./icon/iconfont.css">
+    <link rel="stylesheet" href="./css/swiper.min.css">
+    <title>Document</title>
+</head>
+<script>
+        document.documentElement.style.fontSize=innerWidth/750*100+"px";
+</script>
+<script src="./js/swiper.min.js"></script>
+<script src="./js/jquery-2.1.1.min.js"></script>
+ <script src="./js/handlebars.js"></script> 
+<body>
+      <div class="wrap">
+            <header>
+                    <a href="./page/seach.html">
+                        <i class="iconfont">&#xe729;</i>
+                        <input type="text" placeholder="小米MIX 2S">
+                    </a>
+                    <u class="iconfont">&#xe60e;</u>
+            </header>
+            <section class="one">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper"> 
+                            <div class="swiper-slide"><img src="./img/lunbo.png" alt=""></div>                      
+                            <div class="swiper-slide"><img src="./img/lunbo.png" alt=""></div>  
+                            <div class="swiper-slide"><img src="./img/lunbo.png" alt=""></div> 
+                        </div> 
+                    </div>
+                    <script id="entry-template" type="text/x-hardlebars-template">
+                        <div class="entry">
+                            <h1>{{title}}</h1>
+                            <div class="body">
+                                {{body}}
+                            </div>
+                        </div>
+                    </script> 
+                    <div class="biao">
+                        <u>
+                            <b class="iconfont">&#xe68a;</b>
+                            <i>活动频道</i>
+                        </u> 
+                        <u>
+                            <b class="iconfont">&#xe6c1;</b>
+                            <i>小米闪购</i>
+                        </u>   
+                        <u>
+                            <b class="iconfont">&#xe6ca;</b>
+                            <i>好友拼团</i>
+                        </u> 
+                        <u>
+                            <b class="iconfont">&#xe6bd;</b>
+                            <i>小米分期</i>
+                        </u>
+                    </div>
+                    <div class="mi">
+                          <img src="./img/mi.png" alt="">
+                          <b>
+                            <i>小米之家北京五彩城店</i>
+                            <u>距离3.79公里</u>
+                          </b>
+                          <em>
+                               其他零售店  >
+                          </em>
+                    </div>
+                    <div class="lipin">
+                          <img src="./img/lipin.png" alt="">
+                    </div>
+                    <div class="shan">
+                          <h1>商城早报</h1>
+                          <div class="nei">
+                                <span>
+                                        <b>新品曝光</b>
+                                        <img src="" alt="">
+                                </span>
+                                <span>
+                                        <b>特惠攻略</b>
+                                        <img src="" alt="">
+                                </span>
+                                <span>
+                                        <b>开箱图赏</b>
+                                        <img src="" alt="">
+                                </span>
+                                <span>
+                                        <b>评测解析</b>
+                                        <img src="" alt="">
+                                </span>
+                          </div> 
+                    </div>
+            </section>  
+            <section class="two">
+                    分类
+            </section>
+            <section class="three">
+                    发现
+            </section>
+            <section class="four">
+                   购物车
+            </section>
+            <section class="five">
+                   我的
+            </section>
+            <footer>
+                   <a href="">
+                        <u class="iconfont">&#xe648;</u>
+                        <b>首页</b>
+                   </a>
+                   <a href="">
+                        <u class="iconfont">&#xe649;</u>
+                        <b>分类</b>
+                   </a>
+                   <a href="">
+                        <u class="iconfont">&#xe715;</u>
+                        <b>发现</b>
+                   </a>
+                   <a href="">
+                        <u class="iconfont">&#xe63c;</u>
+                        <b>购物车</b>
+                   </a>
+                   <a href="">
+                        <u class="iconfont">&#xe647;</u>
+                        <b>我的</b>
+                   </a>
+            </footer>
+        </div>
+        <script> 
+            var mySwiper = new Swiper('.swiper-container', {
+                autoplay: 5000,//可选选项，自动滑动
+            })  
+            $.ajax({
+                    url:"/index",
+                    dataType:"json",
+                    success:function(res){
+                        console.log(res);
+                        var source=$("#entry-template").html();
+                        var template=Handlebars.compile(source);
+                        var context= res; 
+                        var html=template(context);
+                        $(".wrap").html(html); 
+                    },
+                    error:function(erroe){
+                        console.warn(error);
+                    }
+            }) 
+            
+            $("footer").on("click","a",function(){
+                var ind=$(this).index();
+                $("section").eq(ind).show().siblings().hide();
+            }) 
+        </script>
+</body>
+</html>
